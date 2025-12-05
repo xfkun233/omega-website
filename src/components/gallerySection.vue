@@ -2,14 +2,14 @@
 import { ref } from 'vue'
 
 const images = [
-  '/CG/0 (111).jpeg',
-  '/CG/0 - 2025-11-19T035712.579.jpeg',
-  '/CG/vis000.jpg',
-  '/CG/vis002.jpg',
-  '/CG/vis004.jpg',
-  '/CG/vis010.jpg',
-  '/CG/vis031.jpg',
-  '/CG/vis214.jpg',
+  'CG/0 (111).jpeg',
+  'CG/0 - 2025-11-19T035712.579.jpeg',
+  'CG/vis000.jpg',
+  'CG/vis002.jpg',
+  'CG/vis004.jpg',
+  'CG/vis010.jpg',
+  'CG/vis031.jpg',
+  'CG/vis214.jpg',
 ]
 
 const lightbox = ref({ open: false, index: 0 })

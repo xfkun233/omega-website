@@ -7,8 +7,8 @@ const heroines = [
     name: '宫冈 门王水',
     desc: '掌管着真言打工的旧书店的少女。年龄不详。似乎也没有上学。真言被她（强行）拉着，两人一同前往了“玄之森”。',
     outfits: [
-      '/kadomi/kadomi_00_01_00.png',
-      '/kadomi/kadomi_s_00_00_00.png',
+      'kadomi/kadomi_00_01_00.png',
+      'kadomi/kadomi_s_00_00_00.png',
     ],
   },
   {
@@ -16,8 +16,8 @@ const heroines = [
     name: '狩屋 克杖',
     desc: '从初中开始就一直在田径部。不仅限于田径项目，她在各项身体技能上都十分优异。 学业方面也相当不错，可谓文武双全，成绩优异。',
     outfits: [
-      '/kariya/kariya_00.png',
-      '/kariya/kariya_form_00.png',
+      'kariya/kariya_00.png',
+      'kariya/kariya_form_00.png',
     ],
   },
   {
@@ -25,8 +25,8 @@ const heroines = [
     name: '三春 冬夏',
     desc: '金发碧眼，乍一看像个外国人，实际上双亲都是日本人。非常讨厌陈规陋习，但是在家里被强迫要表现得像个名门闺秀。',
     outfits: [
-      '/miharu/touka_true_00.png',
-      '/miharu/touka_true_nor_00.png',
+      'miharu/touka_true_00.png',
+      'miharu/touka_true_nor_00.png',
     ],
   },
   {
@@ -34,8 +34,8 @@ const heroines = [
     name: '绫目 姫様',
     desc: '绫目三姐妹之一。万年归家部。长着三白眼，是个狂热的咖喱爱好者。和冬夏的关系算不上很好，处于一种本家与分家般的主仆关系。',
     outfits: [
-      '/ayame/ayame_00.png',
-      '/ayame/ayame_form_00.png',
+      'ayame/ayame_00.png',
+      'ayame/ayame_form_00.png',
     ],
   },
 ]
