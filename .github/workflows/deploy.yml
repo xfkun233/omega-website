@@ -1,0 +1,58 @@
+name: Deploy Vue Site to Pages
+
+on:
+  # 监听 main 分支的 push 事件，一旦有代码推送到 main 就触发
+  push:
+    branches: ["main"]
+
+  # 允许你在 Actions 页面手动点击按钮触发部署
+  workflow_dispatch:
+
+# 设置权限，允许 GITHUB_TOKEN 读取仓库并写入 Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 允许并发部署，如果有新的 push，取消正在进行的旧部署
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # 构建任务
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (拉取代码)
+        uses: actions/checkout@v4
+
+      - name: Setup Node (安装 Node.js)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # 这里可以用 18 或 20
+          cache: 'npm'       # 自动缓存 npm 依赖，加快构建速度
+
+      - name: Install dependencies (安装依赖)
+        run: npm ci # 使用 ci 也就是 clean install，比 install 更稳定
+
+      - name: Build (打包构建)
+        run: npm run build
+
+      - name: Upload artifact (上传构建产物)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 指定构建输出的文件夹，Vite 默认是 dist
+          path: ./dist
+
+  # 部署任务
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build # 只有 build 成功了才运行 deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
