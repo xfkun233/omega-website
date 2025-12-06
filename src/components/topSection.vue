@@ -1,4 +1,8 @@
 <script setup>
+const scrollToStory = (e) => {
+  e.preventDefault()
+  document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -22,7 +26,7 @@
         </div>
         
         <!-- 按钮 -->
-        <a href="#story" class="relative z-20 block px-10 py-2 text-xs font-bold tracking-[0.3em] text-white bg-[#b2252e] hover:brightness-110 transition-all duration-300 rounded-none shadow-xl">
+        <a href="#story" @click="scrollToStory" class="relative z-20 block px-10 py-2 text-xs font-bold tracking-[0.3em] text-white bg-[#b2252e] hover:brightness-110 transition-all duration-300 rounded-none shadow-xl">
           SCROLL
         </a>
       </div>
