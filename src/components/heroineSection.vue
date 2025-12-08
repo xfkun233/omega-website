@@ -43,63 +43,42 @@ const heroines = [
 const currentVariants = ref(Object.fromEntries(heroines.map(c => [c.id, 0])))
 const touchStart = ref(0)
 
-function setVariant(id, v) {
+function setVariant (id, v) {
   currentVariants.value[id] = v
 }
 
-function handleTouchStart(e) {
-  touchStart.value = e.touches[0].clientX
-}
-
-function handleTouchEnd(e, id, outfits) {
-  const touchEnd = e.changedTouches[0].clientX
-  const diff = touchStart.value - touchEnd
-  
-  if (Math.abs(diff) > 50) {
-    const current = currentVariants.value[id]
-    let nextIndex
-    
-    if (diff > 0) {
-      // Swipe Left -> Next
-      nextIndex = (current + 1) % outfits.length
-    } else {
-      // Swipe Right -> Prev
-      nextIndex = (current - 1 + outfits.length) % outfits.length
-    }
-    
-    setVariant(id, nextIndex)
-  }
+function handleClick (id, outfits) {
+  const current = currentVariants.value[id]
+  const nextIndex = (current + 1) % outfits.length
+  setVariant(id, nextIndex)
 }
 </script>
 
 <template>
-  <section id="heroine" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-24 space-y-24 scroll-mt-[49px]">
+  <section id="heroine" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-16 space-y-24 scroll-mt-[49px]">
     <h2 v-fade-in class="text-2xl md:text-3xl font-semibold text-center mb-12">CHARACTER</h2>
-    
-    <div v-for="(c, index) in heroines" :key="c.id" 
-         class="flex flex-col md:flex-row gap-8 md:gap-16 items-center"
-         :class="{ 'md:flex-row-reverse': index % 2 !== 0 }">
-      
+
+    <div v-for="(c, index) in heroines" :key="c.id" class="flex flex-col md:flex-row gap-8 md:gap-16 items-center"
+      :class="{ 'md:flex-row-reverse': index % 2 !== 0 }">
+
       <!-- 立绘区域 -->
       <div class="md:w-1/2 w-full relative group" v-fade-in>
-        <div class="relative overflow-hidden rounded-xl bg-gradient-to-b from-white/5 to-transparent p-4 transition-transform duration-500 hover:-translate-y-2"
-             @touchstart="handleTouchStart"
-             @touchend="handleTouchEnd($event, c.id, c.outfits)">
+        <div
+          class="relative overflow-hidden rounded-xl bg-gradient-to-b from-white/5 to-transparent p-4 transition-transform duration-500 hover:-translate-y-2"
+          @click="handleClick(c.id, c.outfits)">
           <div class="relative aspect-[3/4] w-full">
             <Transition name="fade" mode="out-in">
-              <img :key="currentVariants[c.id]" 
-                   :src="c.outfits[currentVariants[c.id]]" 
-                   :alt="c.name" 
-                   class="w-full h-full object-cover object-top rounded-lg shadow-2xl" />
+              <img :key="currentVariants[c.id]" :src="c.outfits[currentVariants[c.id]]" :alt="c.name"
+                class="w-full h-full object-cover object-top rounded-lg shadow-2xl" />
             </Transition>
           </div>
-          
           <!-- 差分切换按钮 (悬浮显示) -->
-          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 px-3 py-2 rounded-full backdrop-blur-sm">
+          <div
+            class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 px-3 py-2 rounded-full backdrop-blur-sm">
             <button v-for="(outfit, idx) in c.outfits" :key="idx"
-                    class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all border"
-                    :class="currentVariants[c.id] === idx ? 'bg-white text-black border-white scale-110' : 'bg-transparent text-white border-white/30 hover:bg-white/20'"
-                    @click="setVariant(c.id, idx)">
+              class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all border"
+              :class="currentVariants[c.id] === idx ? 'bg-white text-black border-white scale-110' : 'bg-transparent text-white border-white/30 hover:bg-white/20'"
+              @click="setVariant(c.id, idx)">
               {{ idx + 1 }}
             </button>
           </div>
@@ -121,6 +100,13 @@ function handleTouchEnd(e, id, outfits) {
 </template>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

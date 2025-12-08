@@ -78,7 +78,7 @@ const chapters = [
 </script>
 
 <template>
-  <section id="story" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-24 scroll-mt-[49px]">
+  <section id="story" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-16 scroll-mt-[49px]">
     <h2 v-fade-in class="text-2xl md:text-3xl font-semibold mb-12 text-center">STORY</h2>
     
     <div class="space-y-24">
