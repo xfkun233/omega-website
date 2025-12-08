@@ -77,18 +77,36 @@ onUnmounted(() => {
     </div>
 
     <!-- Mobile Menu -->
-    <div v-if="isMenuOpen" class="md:hidden absolute top-full left-0 w-full bg-gray-900/95 border-t border-white/10 backdrop-blur-xl">
-      <div class="flex flex-col p-4 space-y-4">
-        <a 
-          v-for="item in items" 
-          :key="item.label" 
-          :href="item.href" 
-          @click.prevent="scrollTo(item.href)"
-          class="text-white/80 hover:text-white block"
-        >
-          {{ item.label }}
-        </a>
+    <Transition name="mobile-menu">
+      <div v-if="isMenuOpen" class="md:hidden absolute top-full left-0 w-full bg-gray-900/95 border-t border-white/10 backdrop-blur-xl">
+        <div class="flex flex-col p-4 space-y-4">
+          <a 
+            v-for="item in items" 
+            :key="item.label" 
+            :href="item.href" 
+            @click.prevent="scrollTo(item.href)"
+            class="text-white/80 hover:text-white block"
+          >
+            {{ item.label }}
+          </a>
+        </div>
       </div>
-    </div>
+    </Transition>
   </nav>
 </template>
+
+<style scoped>
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: all 0.3s ease;
+  max-height: 500px;
+  opacity: 1;
+}
+
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+</style>
