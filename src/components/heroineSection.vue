@@ -41,9 +41,34 @@ const heroines = [
 ]
 
 const currentVariants = ref(Object.fromEntries(heroines.map(c => [c.id, 0])))
+const touchStart = ref(0)
 
 function setVariant(id, v) {
   currentVariants.value[id] = v
+}
+
+function handleTouchStart(e) {
+  touchStart.value = e.touches[0].clientX
+}
+
+function handleTouchEnd(e, id, outfits) {
+  const touchEnd = e.changedTouches[0].clientX
+  const diff = touchStart.value - touchEnd
+  
+  if (Math.abs(diff) > 50) {
+    const current = currentVariants.value[id]
+    let nextIndex
+    
+    if (diff > 0) {
+      // Swipe Left -> Next
+      nextIndex = (current + 1) % outfits.length
+    } else {
+      // Swipe Right -> Prev
+      nextIndex = (current - 1 + outfits.length) % outfits.length
+    }
+    
+    setVariant(id, nextIndex)
+  }
 }
 </script>
 
@@ -57,7 +82,9 @@ function setVariant(id, v) {
       
       <!-- 立绘区域 -->
       <div class="md:w-1/2 w-full relative group" v-fade-in>
-        <div class="relative overflow-hidden rounded-xl bg-gradient-to-b from-white/5 to-transparent p-4 transition-transform duration-500 hover:-translate-y-2">
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-b from-white/5 to-transparent p-4 transition-transform duration-500 hover:-translate-y-2"
+             @touchstart="handleTouchStart"
+             @touchend="handleTouchEnd($event, c.id, c.outfits)">
           <div class="relative aspect-[3/4] w-full">
             <Transition name="fade" mode="out-in">
               <img :key="currentVariants[c.id]" 

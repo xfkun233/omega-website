@@ -13,6 +13,7 @@ const images = [
 ]
 
 const lightbox = ref({ open: false, index: 0 })
+const slideDirection = ref('slide-left')
 
 function open (i) {
   lightbox.value = { open: true, index: i }
@@ -21,10 +22,31 @@ function close () {
   lightbox.value.open = false
 }
 function next () {
+  slideDirection.value = 'slide-left'
   lightbox.value.index = (lightbox.value.index + 1) % images.length
 }
 function prev () {
+  slideDirection.value = 'slide-right'
   lightbox.value.index = (lightbox.value.index - 1 + images.length) % images.length
+}
+
+const touchStart = ref(0)
+
+function handleTouchStart(e) {
+  touchStart.value = e.touches[0].clientX
+}
+
+function handleTouchEnd(e) {
+  const touchEnd = e.changedTouches[0].clientX
+  const diff = touchStart.value - touchEnd
+  
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) {
+      next()
+    } else {
+      prev()
+    }
+  }
 }
 </script>
 
@@ -43,7 +65,9 @@ function prev () {
 
     <Transition name="fade">
       <div v-if="lightbox.open" class="fixed inset-0 z-[60] bg-black/95 flex flex-col items-center justify-center"
-        @click.self="close">
+        @click.self="close"
+        @touchstart="handleTouchStart"
+        @touchend="handleTouchEnd">
         <!-- 关闭按钮 -->
         <button class="absolute top-4 right-4 p-2 text-white/70 hover:text-white z-50" @click="close">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,8 +88,10 @@ function prev () {
           </button>
 
           <!-- 图片 -->
-          <img :src="images[lightbox.index]"
-            class="max-h-[80vh] max-w-[90vw] object-contain rounded shadow-2xl mx-4 select-none" @click.stop />
+          <Transition :name="slideDirection" mode="out-in">
+            <img :key="lightbox.index" :src="images[lightbox.index]"
+              class="max-h-[80vh] max-w-[90vw] object-contain rounded shadow-2xl mx-4 select-none" @click.stop />
+          </Transition>
 
           <!-- 下一张 (桌面端显示在右侧，移动端绝对定位) -->
           <button
@@ -96,5 +122,33 @@ function prev () {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* Slide Left */
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-left-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* Slide Right */
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-right-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

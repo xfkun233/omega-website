@@ -16,7 +16,7 @@ const items = [
 ]
 
 function handleScroll() {
-  isScrolled.value = window.scrollY > 50
+  isScrolled.value = window.scrollY > 50 
 }
 
 function scrollTo(href) {
@@ -46,12 +46,12 @@ onUnmounted(() => {
 <template>
   <nav 
     class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white/5"
-    :class="[isScrolled ? 'bg-gray-900/80 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5']"
+    :class="[(isScrolled || isMenuOpen) ? 'bg-gray-900/80 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5']"
   >
     <div class="mx-auto max-w-7xl px-4 flex items-center justify-between">
       <!-- Logo -->
       <div class="text-l  tracking-widest text-white">
-        Omegaの視界 | 伝奇系ビジュアルノベル
+        Omegaの視界 | 汉化发布页
       </div>
 
       <!-- Desktop Menu -->
