@@ -13,6 +13,10 @@ export default {
       boxShadow: {
         glass: '0 8px 32px rgba(0,0,0,0.35)',
       },
+      fontFamily: {
+        serif: ['"Noto Serif SC"', '"Noto Serif JP"', 'serif'],
+        display: ['"Cinzel"', 'serif'],
+      },
     },
   },
   plugins: [],

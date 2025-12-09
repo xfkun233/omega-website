@@ -78,22 +78,32 @@ const chapters = [
 </script>
 
 <template>
-  <section id="story" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-16 scroll-mt-[49px]">
-    <h2 v-fade-in class="text-2xl md:text-3xl font-semibold mb-12 text-center">STORY</h2>
-    
-    <div class="space-y-24">
-      <div v-for="(chapter, index) in chapters" :key="index" class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-        <!-- 左侧图片 -->
-        <div v-fade-in class="md:w-5/12 w-full shrink-0">
-          <div class="overflow-hidden rounded-lg shadow-lg border border-white/10">
-            <img :src="chapter.image" :alt="chapter.title" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" />
+  <section id="story" class="mx-auto max-w-7xl px-4 md:px-6 py-24 relative overflow-hidden">
+    <h2 v-fade-in
+      class="relative z-10 text-3xl md:text-4xl font-display font-bold mb-32 text-center tracking-widest text-[#b2252e]">
+      <span class="border-b-2 border-[#b2252e] pb-2">STORY</span>
+    </h2>
+
+    <div class="space-y-32">
+      <div v-for="(chapter, index) in chapters" :key="index"
+        class="flex flex-col md:flex-row gap-8 md:gap-20 items-start group"
+        :class="index % 2 === 1 ? 'md:flex-row-reverse' : ''">
+
+        <!-- 图片区域 -->
+        <div v-fade-in class="md:w-5/12 w-full shrink-0 relative">
+          <div class="shadow-2xl relative">
+            <img :src="chapter.image" :alt="chapter.title" class="w-full h-auto shadow-lg" />
           </div>
         </div>
-        
-        <!-- 右侧文字 -->
-        <div v-fade-in class="md:w-7/12 w-full space-y-6">
-          <h3 class="text-xl font-bold text-indigo-300 border-b border-white/10 pb-2 inline-block">{{ chapter.title }}</h3>
-          <p class="text-white/80 leading-relaxed whitespace-pre-line font-light tracking-wide" v-html="chapter.content">
+
+        <!-- 文字区域 -->
+        <div v-fade-in class="md:w-7/12 w-full space-y-6 relative z-10 pt-4">
+          <h3
+            class="text-xl md:text-2xl font-bold font-serif text-indigo-100 border-l-4 border-[#b2252e] pl-6 py-2 leading-relaxed">
+            {{ chapter.title }}
+          </h3>
+          <p class="text-gray-300 leading-loose whitespace-pre-line font-serif text-justify text-sm md:text-base tracking-wide"
+            v-html="chapter.content">
           </p>
         </div>
       </div>

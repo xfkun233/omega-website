@@ -6,15 +6,15 @@ const scrollToStory = (e) => {
 </script>
 
 <template>
-  <section id="top" class="relative min-h-[85vh] md:min-h-screen flex flex-col items-center justify-center bg-[url('/title.png')] bg-cover bg-center bg-no-repeat overflow-hidden">
+  <section id="top" class="relative h-screen md:min-h-screen flex flex-col items-center justify-center bg-[#ed9ea0] bg-[url('/title_m.png')] md:bg-[url('/title.png')] bg-contain md:bg-cover bg-center bg-no-repeat overflow-hidden">
     <!-- 遮罩层 -->
     <div class="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
     <!-- 文字内容 -->
     <div v-fade-in class="relative z-10 text-center px-4 mb-32">
-      <p class="max-w-2xl mx-auto text-white/90 font-medium tracking-widest text-lg drop-shadow-lg">
+      <!-- <p class="max-w-2xl mx-auto text-white/90 font-medium tracking-widest text-lg drop-shadow-lg">
         拍死苍蝇时，苍蝇的本体并不会死亡。被拍死的不过是苍蝇这一现象。
-      </p>
+      </p> -->
     </div>
 
     <!-- 底部按钮与动效 -->
@@ -26,7 +26,7 @@ const scrollToStory = (e) => {
         </div>
         
         <!-- 按钮 -->
-        <a href="#story" @click="scrollToStory" class="relative z-20 block px-10 py-2 text-xs font-bold tracking-[0.3em] text-white bg-[#b2252e] hover:brightness-110 transition-all duration-300 rounded-none shadow-xl">
+        <a href="#story" @click="scrollToStory" class="relative z-20 block px-6 py-2 text-xs font-bold tracking-[0.3em] text-white bg-[#b2252e] hover:brightness-110 transition-all duration-300 rounded-none shadow-xl">
           SCROLL
         </a>
       </div>

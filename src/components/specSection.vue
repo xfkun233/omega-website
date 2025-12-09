@@ -30,60 +30,74 @@ const musicInfo = [
 </script>
 
 <template>
-  <section id="spec" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-16 scroll-mt-[49px]">
-    <h2 v-fade-in class="text-2xl md:text-3xl font-semibold mb-12 text-center">SPEC</h2>
+  <section id="spec" class="mx-auto max-w-7xl px-4 md:px-6 py-24 relative overflow-hidden">
+    <h2 v-fade-in class="relative z-10 text-3xl md:text-4xl font-display font-bold mb-24 text-center tracking-widest text-[#b2252e]">
+      <span class="border-b-2 border-[#b2252e] pb-2">PRODUCT SPEC</span>
+    </h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 mb-20 relative z-10">
       <!-- 左侧：产品信息 -->
-      <div v-fade-in class="space-y-6">
-        <h3 class="text-xl font-medium text-indigo-300 border-l-4 border-indigo-500 pl-4">产品信息</h3>
-        <div class="overflow-hidden rounded-xl border border-white/10 bg-white/5">
+      <div v-fade-in class="space-y-8">
+        <h3 class="text-xl font-display font-bold text-white tracking-widest border-l-4 border-[#b2252e] pl-4 flex items-center">
+          PRODUCT INFO
+          <span class="ml-4 h-[1px] flex-grow bg-white/10"></span>
+        </h3>
+        <div class="border-t border-b border-white/10">
           <div v-for="(item, index) in productInfo" :key="item.k" 
-               class="flex items-center justify-between px-4 py-4 border-white/10"
+               class="flex items-start justify-between px-2 py-4 border-white/5 group hover:bg-white/[0.02] transition-colors"
                :class="{ 'border-b': index !== productInfo.length - 1 }">
-            <span class="text-white/60 font-medium min-w-[4rem]">{{ item.k }}</span>
-            <span class="text-white/90 text-right" v-html="item.v"></span>
+            <span class="text-[#b2252e] font-display text-base tracking-wider font-bold pt-1">{{ item.k }}</span>
+            <span class="text-gray-300 font-serif text-lg text-right leading-relaxed" v-html="item.v"></span>
           </div>
         </div>
       </div>
 
       <!-- 右侧：运行环境 -->
-      <div v-fade-in class="space-y-6">
-        <h3 class="text-xl font-medium text-pink-300 border-l-4 border-pink-500 pl-4">运行环境</h3>
-        <div class="overflow-hidden rounded-xl border border-white/10 bg-white/5">
+      <div v-fade-in class="space-y-8">
+        <h3 class="text-xl font-display font-bold text-white tracking-widest border-l-4 border-gray-500 pl-4 flex items-center">
+          SYSTEM REQ
+          <span class="ml-4 h-[1px] flex-grow bg-white/10"></span>
+        </h3>
+        <div class="border-t border-b border-white/10">
           <div v-for="(item, index) in systemReq" :key="item.k" 
-               class="flex items-center justify-between px-4 py-4 border-white/10"
+               class="flex items-start justify-between px-2 py-4 border-white/5 group hover:bg-white/[0.02] transition-colors"
                :class="{ 'border-b': index !== systemReq.length - 1 }">
-            <span class="text-white/60 font-medium min-w-[4rem]">{{ item.k }}</span>
-            <span class="text-white/90 text-right">{{ item.v }}</span>
+            <span class="text-gray-500 font-display text-base tracking-wider font-bold pt-1">{{ item.k }}</span>
+            <span class="text-gray-300 font-serif text-lg text-right leading-relaxed">{{ item.v }}</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 relative z-10">
       <!-- 左侧：制作团队 -->
-      <div v-fade-in class="space-y-6">
-        <h3 class="text-xl font-medium text-emerald-300 border-l-4 border-emerald-500 pl-4">制作团队</h3>
-        <div class="overflow-hidden rounded-xl border border-white/10 bg-white/5">
+      <div v-fade-in class="space-y-8">
+        <h3 class="text-xl font-display font-bold text-white tracking-widest border-l-4 border-indigo-500 pl-4 flex items-center">
+          STAFF
+          <span class="ml-4 h-[1px] flex-grow bg-white/10"></span>
+        </h3>
+        <div class="border-t border-b border-white/10">
           <div v-for="(item, index) in staffInfo" :key="item.k" 
-               class="flex items-center justify-between px-4 py-4 border-white/10"
+               class="flex items-start justify-between px-2 py-4 border-white/5 group hover:bg-white/[0.02] transition-colors"
                :class="{ 'border-b': index !== staffInfo.length - 1 }">
-            <span class="text-white/60 font-medium min-w-[4rem]">{{ item.k }}</span>
-            <span class="text-white/90 text-right">{{ item.v }}</span>
+            <span class="text-indigo-400 font-display text-base tracking-wider font-bold pt-1">{{ item.k }}</span>
+            <span class="text-gray-300 font-serif text-lg text-right leading-relaxed">{{ item.v }}</span>
           </div>
         </div>
       </div>
 
       <!-- 右侧：主题歌 -->
-      <div v-fade-in class="space-y-6">
-        <h3 class="text-xl font-medium text-amber-300 border-l-4 border-amber-500 pl-4">主题歌</h3>
-        <div class="overflow-hidden rounded-xl border border-white/10 bg-white/5">
+      <div v-fade-in class="space-y-8">
+        <h3 class="text-xl font-display font-bold text-white tracking-widest border-l-4 border-amber-500 pl-4 flex items-center">
+          THEME SONG
+          <span class="ml-4 h-[1px] flex-grow bg-white/10"></span>
+        </h3>
+        <div class="border-t border-b border-white/10">
           <div v-for="(item, index) in musicInfo" :key="item.k" 
-               class="flex items-center justify-between px-4 py-4 border-white/10"
+               class="flex items-start justify-between px-2 py-4 border-white/5 group hover:bg-white/[0.02] transition-colors"
                :class="{ 'border-b': index !== musicInfo.length - 1 }">
-            <span class="text-white/60 font-medium min-w-[4rem]">{{ item.k }}</span>
-            <span class="text-white/90 text-right">{{ item.v }}</span>
+            <span class="text-amber-500 font-display text-base tracking-wider font-bold pt-1">{{ item.k }}</span>
+            <span class="text-gray-300 font-serif text-lg text-right leading-relaxed">{{ item.v }}</span>
           </div>
         </div>
       </div>
