@@ -6,7 +6,7 @@ const scrollToStory = (e) => {
 </script>
 
 <template>
-  <section id="top" class="relative h-screen md:min-h-screen flex flex-col items-center justify-center bg-[#ed9ea0] bg-[url('/title_m.png')] md:bg-[url('/title.png')] bg-contain md:bg-cover bg-center bg-no-repeat overflow-hidden">
+  <section id="top" class="relative h-screen md:min-h-screen flex flex-col items-center justify-center bg-[#ed9ea0] bg-[url('/title_m.jpg')] md:bg-[url('/title.jpg')] bg-contain md:bg-cover bg-center bg-no-repeat overflow-hidden">
     <!-- 遮罩层 -->
     <div class="absolute inset-0 bg-black/20 pointer-events-none"></div>
 

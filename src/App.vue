@@ -76,7 +76,7 @@ onUnmounted(() => {
     </Transition>
 
     <audio ref="audioPlayer" loop preload="auto">
-      <source src="/bgm/Manack - 18.m17：Lost World.flac" type="audio/flac">
+      <source src="/bgm/LostWorld.m4a" type="audio/mp4">
     </audio>
 
     <div class="bg-noise"></div>

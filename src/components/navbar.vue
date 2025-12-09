@@ -49,19 +49,18 @@ onUnmounted(() => {
     :class="[(isScrolled || isMenuOpen) ? 'bg-gray-900/90 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5']"
   >
     <div class="mx-auto max-w-7xl px-4 flex items-center justify-between">
-      <!-- Logo -->
-      <div class="text-l md:text-2xl font-serif tracking-widest text-white drop-shadow-md">
+      
+      <div class="text-lg md:text-2xl font-serif tracking-widest text-white drop-shadow-md shrink-0 mr-4">
         <span class="text-[#b2252e]">Omega</span>の視界 | 汉化发布页
       </div>
 
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex gap-8">
+      <div class="hidden lg:flex gap-4 xl:gap-8 items-center">
         <a 
           v-for="item in items" 
           :key="item.label" 
           :href="item.href" 
           @click.prevent="scrollTo(item.href)"
-          class="text-sm font-display font-bold tracking-widest text-white/70 hover:text-white transition-colors relative group"
+          class="text-sm font-display font-bold tracking-widest text-white/70 hover:text-white transition-colors relative group whitespace-nowrap"
         >
           <div class="grid place-items-center">
             <span class="col-start-1 row-start-1 transition-all duration-300 group-hover:-translate-y-2 group-hover:opacity-0">{{ item.label }}</span>
@@ -71,19 +70,16 @@ onUnmounted(() => {
         </a>
       </div>
 
-      <!-- Mobile Toggle -->
       <button 
-        class="md:hidden flex flex-col items-center justify-center w-12 h-12 z-50 relative group"
+        class="lg:hidden flex flex-col items-center justify-center w-12 h-12 z-50 relative group"
         @click="isMenuOpen = !isMenuOpen"
         aria-label="Toggle Menu"
       >
-        <!-- Top Line -->
         <span 
           class="w-8 h-[2px] bg-white transition-all duration-300 ease-in-out origin-center mb-1"
           :class="{ 'rotate-45 translate-y-[12px]': isMenuOpen }"
         ></span>
         
-        <!-- MENU Text -->
         <span 
           class="text-[10px] font-bold tracking-[0.2em] text-white transition-all duration-300 select-none"
           :class="{ 'opacity-0 scale-0': isMenuOpen }"
@@ -91,7 +87,6 @@ onUnmounted(() => {
           MENU
         </span>
 
-        <!-- Bottom Line -->
         <span 
           class="w-8 h-[2px] bg-white transition-all duration-300 ease-in-out origin-center mt-1"
           :class="{ '-rotate-45 -translate-y-[12px]': isMenuOpen }"
@@ -99,18 +94,17 @@ onUnmounted(() => {
       </button>
     </div>
 
-    <!-- Mobile Menu -->
     <Transition name="mobile-menu">
-      <div v-if="isMenuOpen" class="md:hidden absolute top-full left-0 w-full bg-gray-900/95 border-t border-white/10 backdrop-blur-xl">
-        <div class="flex flex-col p-4 space-y-4">
-          <a 
+      <div v-if="isMenuOpen" @touchmove.prevent class="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 border-t border-white/10 backdrop-blur-xl ">
+        <div class="flex flex-col p-4 space-y-6 items-center text-center">
+            <a 
             v-for="item in items" 
             :key="item.label" 
             :href="item.href" 
             @click.prevent="scrollTo(item.href)"
-            class="text-white/80 hover:text-white block"
+            class="text-l font-bold tracking-widest text-white/80 hover:text-[#b2252e] block transition-colors"
           >
-            {{ item.label }}
+            {{ item.zh }} <span class="text-xs opacity-50 block mt-1">{{ item.label }}</span>
           </a>
         </div>
       </div>
@@ -122,7 +116,7 @@ onUnmounted(() => {
 .mobile-menu-enter-active,
 .mobile-menu-leave-active {
   transition: all 0.3s ease;
-  max-height: 500px;
+  max-height: 553px;
   opacity: 1;
 }
 
