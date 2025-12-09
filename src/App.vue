@@ -1,7 +1,7 @@
 <script setup>
 import NavBar from './components/navbar.vue'
 import topSection from './components/topSection.vue'
-import heroineSection from './components/heroineSection.vue'
+import characterSection from './components/characterSection.vue'
 import GallerySection from './components/gallerySection.vue'
 import StorySection from './components/storySection.vue'
 import SpecSection from './components/specSection.vue'
@@ -14,7 +14,7 @@ import AppFooter from './components/AppFooter.vue'
     <main>
       <topSection />
       <StorySection />
-      <heroineSection />
+      <characterSection />
       <GallerySection />
       <SpecSection />
       <AppFooter />

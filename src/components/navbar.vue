@@ -7,7 +7,7 @@ const isScrolled = ref(false)
 const items = [
   { label: 'TOP', href: '#top' },
   { label: 'STORY', href: '#story' },
-  { label: 'HEROINE', href: '#heroine' },
+  { label: 'CHARACTER', href: '#character' },
   { label: 'GALLERY', href: '#gallery' },
   { label: 'SPEC', href: '#spec' },
   { label: 'L10N STAFF', href: '#l10n-staff' },

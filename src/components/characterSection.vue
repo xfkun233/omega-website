@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const heroines = [
+const characters = [
   {
     id: 'miyaoka',
     name: '宫冈 门王水',
@@ -40,7 +40,7 @@ const heroines = [
   },
 ]
 
-const currentVariants = ref(Object.fromEntries(heroines.map(c => [c.id, 0])))
+const currentVariants = ref(Object.fromEntries(characters.map(c => [c.id, 0])))
 const touchStart = ref(0)
 
 function setVariant (id, v) {
@@ -55,10 +55,10 @@ function handleClick (id, outfits) {
 </script>
 
 <template>
-  <section id="heroine" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-16 space-y-24 scroll-mt-[49px]">
+  <section id="character" class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-16 space-y-24 scroll-mt-[49px]">
     <h2 v-fade-in class="text-2xl md:text-3xl font-semibold text-center mb-12">CHARACTER</h2>
 
-    <div v-for="(c, index) in heroines" :key="c.id" class="flex flex-col md:flex-row gap-8 md:gap-16 items-center"
+    <div v-for="(c, index) in characters" :key="c.id" class="flex flex-col md:flex-row gap-8 md:gap-16 items-center"
       :class="{ 'md:flex-row-reverse': index % 2 !== 0 }">
 
       <!-- 立绘区域 -->
