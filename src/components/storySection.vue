@@ -1,7 +1,12 @@
 <script setup>
 const chapters = [
   {
-    title: 'Omegaの視界 シキのはじまり／未解封のハコニハ',
+    titleSegments: [
+      { text: 'Omega', color: '#b2252e', size: '1.5em' },
+      { text: 'の視界', color: '#b2252e', size: '1.5em' },
+      { break: true },
+      { text: 'シキのはじまり／未解封のハコニハ', color: '#fff', size: '0.9em' },
+    ],
     image: 'cover/omg_shiki_01.jpg',
     content: `主人公饭洼真言与自称美少女古书肆的宫冈门王水一同，前往北方的乡间“玄之森”。
 在那里，宫冈命令他去调查疑似与谜之资料群《月狂跳》有关的 “御神体”以及当地的祭典。
@@ -20,7 +25,12 @@ const chapters = [
 猫……`
   },
   {
-    title: 'Omegaの視界 アキかけたシキのアイ',
+    titleSegments: [
+      { text: 'Omega', color: '#b2252e', size: '1.5em' },
+      { text: 'の視界', color: '#b2252e', size: '1.5em' },
+      { break: true },
+      { text: 'アキかけたシキのアイ', color: '#fff', size: '0.9em' },
+    ],
     image: 'cover/omg_aki_01.jpg',
     content: `主人公饭洼真言与自称美少女古书肆的宫冈门王水一同，前往北方的乡间“玄之森”。
 为了调查谜之资料群《月狂跳》，他与当地权贵三春家的女儿——金发碧眼的少女冬夏，以及随后接连出现的其他三春家相关人员一同行动。
@@ -37,7 +47,13 @@ const chapters = [
 被迫面临抉择。`
   },
   {
-    title: 'Omegaの視界 アキかけたシキのアイ：残',
+    titleSegments: [
+      { text: 'Omega', color: '#fff', size: '1.5em' },
+      { text: 'の視界', color: '#fff', size: '1.5em' },
+      { break: true },
+      { text: 'アキかけたシキのアイ：', color: '#fff', size: '0.9em' },
+      { text: '残', color: '#b2252e', size: '1.5em' },
+    ],
     image: 'cover/omg_zan_01.jpg',
     content: `主人公饭洼真言与自称美少女古书肆的宫冈门王水一同，前往北方的乡间“玄之森”。
 为了调查谜之资料群《月狂跳》，他与当地权贵三春家的女儿——金发碧眼的少女冬夏，以及随后接连出现的其他三春家相关人员一同行动。
@@ -54,7 +70,12 @@ const chapters = [
 惨烈，且残酷——`
   },
   {
-    title: 'Omegaの視界 ～ミヨ オワレル シマイ トワ（●ｎｄ）～',
+    titleSegments: [
+      { text: 'Omega', color: '#fff', size: '1.5em' },
+      { text: 'の視界', color: '#fff', size: '1.5em' },
+      { break: true },
+      { text: '～ミヨ オワレル シマイ トワ（●ｎｄ）～', color: '#fff', size: '0.9em' },
+    ],
     image: 'cover/omg_miyo_01.jpg',
     content: `主人公饭洼真言与自称美少女古书肆的宫冈门王水一同，前往北方的乡间“玄之森”。
 为了调查谜之资料群《月狂跳》，他与当地权贵三春家的女儿——金发碧眼的少女冬夏，以及随后接连出现的其他三春家相关人员一同行动。
@@ -98,9 +119,13 @@ const chapters = [
 
         <!-- 文字区域 -->
         <div v-fade-in class="md:w-7/12 w-full space-y-6 relative z-10 pt-4">
-          <h3
-            class="text-xl md:text-2xl font-bold font-serif text-indigo-100 border-l-4 border-[#b2252e] pl-6 py-2 leading-relaxed">
-            {{ chapter.title }}
+          <h3 class="text-xl md:text-2xl  font-serif border-l-4 border-[#b2252e] pl-6 py-2 leading-relaxed">
+            <template v-for="(seg, i) in chapter.titleSegments" :key="i">
+              <br v-if="seg.break" />
+              <span v-else :style="{ color: seg.color, fontSize: seg.size || '1em', fontFamily: seg.font || 'serif' }">
+                {{ seg.text }}
+              </span>
+            </template>
           </h3>
           <p class="text-gray-300 leading-loose whitespace-pre-line font-serif text-justify text-sm md:text-base tracking-wide"
             v-html="chapter.content">
