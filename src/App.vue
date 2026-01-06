@@ -5,7 +5,10 @@ import topSection from './components/topSection.vue'
 import characterSection from './components/characterSection.vue'
 import GallerySection from './components/gallerySection.vue'
 import StorySection from './components/storySection.vue'
+import DownloadSection from './components/downloadSection.vue'
+import StaffSection from './components/staffSection.vue'
 import SpecSection from './components/specSection.vue'
+import ContactSection from './components/contactSection.vue'
 import AppFooter from './components/AppFooter.vue'
 
 const showScrollTop = ref(false)
@@ -87,6 +90,9 @@ onUnmounted(() => {
       <characterSection />
       <GallerySection />
       <SpecSection />
+      <StaffSection />
+      <DownloadSection />
+      <ContactSection />
       <AppFooter />
     </main>
 

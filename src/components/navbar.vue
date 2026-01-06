@@ -12,7 +12,7 @@ const items = [
   { label: 'PRODUCT', zh: '产品规格', href: '#spec' },
   { label: 'L10N STAFF', zh: '汉化团队', href: '#l10n-staff' },
   { label: 'DOWNLOAD', zh: '下载', href: '#download' },
-  { label: 'CONTACT US', zh: '联系我们', href: '#footer' },
+  { label: 'CONTACT US', zh: '联系我们', href: '#contact' },
 ]
 
 function handleScroll() {
