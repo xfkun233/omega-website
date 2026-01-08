@@ -21,7 +21,7 @@ const characters = [
     ],
   },
   {
-    id: 'miharu tōka',
+    id: 'miharu touka',
     name: '三春 冬夏',
     desc: '金发碧眼，乍一看像个外国人，实际上双亲都是日本人。非常讨厌陈规陋习，但是在家里被强迫要表现得像个名门闺秀。',
     outfits: [
