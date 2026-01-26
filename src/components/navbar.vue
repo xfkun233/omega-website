@@ -56,17 +56,18 @@ onUnmounted(() => {
 
       <div class="hidden lg:flex gap-4 xl:gap-8 items-center">
         <a 
-          v-for="item in items" 
+          v-for="(item, index) in items" 
           :key="item.label" 
           :href="item.href" 
           @click.prevent="scrollTo(item.href)"
-          class="text-sm font-display font-bold tracking-widest text-white/70 hover:text-white transition-colors relative group whitespace-nowrap"
+          class="text-sm font-display font-bold tracking-widest text-white/70 hover:text-white transition-all duration-300 relative group whitespace-nowrap hover:-translate-y-0.5"
+          :style="{ transitionDelay: `${index * 30}ms` }"
         >
           <div class="grid place-items-center">
             <span class="col-start-1 row-start-1 transition-all duration-300 group-hover:-translate-y-2 group-hover:opacity-0">{{ item.label }}</span>
             <span class="col-start-1 row-start-1 transition-all duration-300 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-[#b2252e]">{{ item.zh }}</span>
           </div>
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#b2252e] transition-all duration-300 group-hover:w-full"></span>
+          <span class="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-[#b2252e] transition-all duration-500 group-hover:w-full group-hover:left-0"></span>
         </a>
       </div>
 
@@ -95,14 +96,15 @@ onUnmounted(() => {
     </div>
 
     <Transition name="mobile-menu">
-      <div v-if="isMenuOpen" @touchmove.prevent class="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 border-t border-white/10 backdrop-blur-xl ">
+      <div v-if="isMenuOpen" @touchmove.prevent class="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 border-t border-white/10 backdrop-blur-xl overflow-hidden">
         <div class="flex flex-col p-4 space-y-6 items-center text-center">
             <a 
-            v-for="item in items" 
+            v-for="(item, index) in items" 
             :key="item.label" 
             :href="item.href" 
             @click.prevent="scrollTo(item.href)"
-            class="text-l font-bold tracking-widest text-white/80 hover:text-[#b2252e] block transition-colors"
+            class="text-l font-bold tracking-widest text-white/80 hover:text-[#b2252e] block transition-all duration-300 hover:translate-x-2"
+            :style="{ animationDelay: `${index * 50}ms` }"
           >
             {{ item.zh }} <span class="text-xs opacity-50 block mt-1">{{ item.label }}</span>
           </a>

@@ -45,3 +45,206 @@ html {
 .text-shadow-glow {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
+
+/* ============ 高级动画效果 ============ */
+
+/* 光晕脉冲 */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(178, 37, 46, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(178, 37, 46, 0.6), 0 0 60px rgba(178, 37, 46, 0.3);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* 边框流动 */
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-border-flow {
+  background: linear-gradient(90deg, transparent, #b2252e, transparent);
+  background-size: 200% 100%;
+  animation: border-flow 3s linear infinite;
+}
+
+/* 浮动效果 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* 闪烁线条 */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* 波纹扩散 */
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ripple::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid #b2252e;
+  border-radius: inherit;
+  animation: ripple 1.5s ease-out infinite;
+}
+
+/* 文字发光 */
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(178, 37, 46, 0.5), 0 0 8px rgba(178, 37, 46, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 8px rgba(178, 37, 46, 0.8), 0 0 16px rgba(178, 37, 46, 0.5), 0 0 24px rgba(178, 37, 46, 0.3);
+  }
+}
+
+.animate-text-glow {
+  animation: text-glow 2s ease-in-out infinite;
+}
+
+/* 扫描线效果 */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+
+/* 悬浮卡片效果 */
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 边框渐变动画 */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #b2252e, #ff6b6b, #b2252e, #8b1a1a);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  animation: border-flow 4s ease infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* 故障效果 */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.hover-glitch:hover {
+  animation: glitch 0.3s ease infinite;
+}
+
+/* 放大遮罩效果 */
+.zoom-mask {
+  -webkit-mask-image: radial-gradient(circle, black 30%, transparent 70%);
+  mask-image: radial-gradient(circle, black 30%, transparent 70%);
+  transition: -webkit-mask-size 0.5s, mask-size 0.5s;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
+.zoom-mask:hover {
+  -webkit-mask-size: 150%;
+  mask-size: 150%;
+}
+
+/* 弹性缩放 */
+.hover-bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-bounce:hover {
+  transform: scale(1.05);
+}
+
+.hover-bounce:active {
+  transform: scale(0.95);
+}

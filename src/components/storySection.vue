@@ -101,7 +101,7 @@ const chapters = [
 <template>
   <section id="story" class="mx-auto max-w-7xl px-4 md:px-6 py-24 relative overflow-hidden">
     <h2 v-fade-in
-      class="relative z-10 text-3xl md:text-4xl font-display font-bold mb-32 text-center tracking-widest text-[#b2252e]">
+      class="relative z-10 text-3xl md:text-4xl font-display font-bold mb-32 text-center tracking-widest text-[#b2252e] animate-text-glow">
       <span class="border-b-2 border-[#b2252e] pb-2">STORY</span>
     </h2>
 
@@ -111,15 +111,19 @@ const chapters = [
         :class="index % 2 === 1 ? 'md:flex-row-reverse' : ''">
 
         <!-- 图片区域 -->
-        <div v-fade-in class="md:w-5/12 w-full shrink-0 relative">
-          <div class="shadow-2xl relative">
-            <img :src="chapter.image" :alt="chapter.title" class="w-full h-auto shadow-lg" />
+        <div v-fade-in="{ direction: index % 2 === 0 ? 'left' : 'right', delay: 100 }" 
+          class="md:w-5/12 w-full shrink-0 relative">
+          <div class="shadow-2xl relative overflow-hidden hover-lift">
+            <img :src="chapter.image" :alt="chapter.title" 
+              class="w-full h-auto shadow-lg transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
         </div>
 
         <!-- 文字区域 -->
-        <div v-fade-in class="md:w-7/12 w-full space-y-6 relative z-10 pt-4">
-          <h3 class="text-xl md:text-2xl  font-serif border-l-4 border-[#b2252e] pl-6 py-2 leading-relaxed">
+        <div v-fade-in="{ direction: index % 2 === 0 ? 'right' : 'left', delay: 200 }" 
+          class="md:w-7/12 w-full space-y-6 relative z-10 pt-4">
+          <h3 class="text-xl md:text-2xl font-serif border-l-4 border-[#b2252e] pl-6 py-2 leading-relaxed transition-all duration-300 group-hover:border-l-8 group-hover:pl-8">
             <template v-for="(seg, i) in chapter.titleSegments" :key="i">
               <br v-if="seg.break" />
               <span v-else :style="{ color: seg.color, fontSize: seg.size || '1em', fontFamily: seg.font || 'serif' }">

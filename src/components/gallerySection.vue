@@ -72,24 +72,28 @@ onUnmounted(() => {
 
 <template>
   <section id="gallery" class="mx-auto max-w-7xl px-4 md:px-6 py-24 relative overflow-hidden">
-    <h2 v-fade-in class="relative z-10 text-3xl md:text-4xl font-display font-bold mb-24 text-center tracking-widest text-[#b2252e]">
+    <h2 v-fade-in class="relative z-10 text-3xl md:text-4xl font-display font-bold mb-24 text-center tracking-widest text-[#b2252e] animate-text-glow">
       <span class="border-b-2 border-[#b2252e] pb-2">CG GALLERY</span>
     </h2>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 relative z-10">
-      <button v-for="(src, i) in images" :key="src" class="relative aspect-video group" @click="open(i)">
+    <div v-stagger:up="{ delay: 80 }" class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 relative z-10">
+      <button v-for="(src, i) in images" :key="src" class="relative aspect-video group hover-lift" @click="open(i)">
         <!-- 边框装饰 -->
         <div class="absolute -inset-2 border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-95 group-hover:scale-100">
-           <div class="absolute top-0 left-0 w-1 h-1 bg-white"></div>
-           <div class="absolute top-0 right-0 w-1 h-1 bg-white"></div>
-           <div class="absolute bottom-0 left-0 w-1 h-1 bg-white"></div>
-           <div class="absolute bottom-0 right-0 w-1 h-1 bg-white"></div>
+           <div class="absolute top-0 left-0 w-2 h-2 bg-[#b2252e] transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
+           <div class="absolute top-0 right-0 w-2 h-2 bg-[#b2252e] transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
+           <div class="absolute bottom-0 left-0 w-2 h-2 bg-[#b2252e] transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
+           <div class="absolute bottom-0 right-0 w-2 h-2 bg-[#b2252e] transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
         </div>
 
         <div class="w-full h-full overflow-hidden relative shadow-lg bg-black">
-          <img v-fade-in :src="src" :alt="'CG ' + (i + 1)"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
+          <img :src="src" :alt="'CG ' + (i + 1)"
+            class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100 group-hover:brightness-110" />
           <div class="absolute inset-0 bg-[#b2252e]/0 group-hover:bg-[#b2252e]/10 transition-colors duration-500 mix-blend-overlay"></div>
+          <!-- 序号标签 -->
+          <div class="absolute bottom-2 right-2 text-white/0 group-hover:text-white/60 text-xs font-mono transition-all duration-300 tracking-wider">
+            {{ String(i + 1).padStart(2, '0') }}
+          </div>
         </div>
       </button>
     </div>

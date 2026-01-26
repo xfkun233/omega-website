@@ -57,7 +57,7 @@ function handleClick (id, outfits) {
 <template>
   <section id="character" class="mx-auto max-w-7xl px-4 md:px-6 py-24 space-y-32 relative overflow-hidden">
     <h2 v-fade-in
-      class="relative z-10 text-3xl md:text-4xl font-display font-bold text-center mb-24 tracking-widest text-[#b2252e]">
+      class="relative z-10 text-3xl md:text-4xl font-display font-bold text-center mb-24 tracking-widest text-[#b2252e] animate-text-glow">
       <span class="border-b-2 border-[#b2252e] pb-2">CHARACTER</span>
     </h2>
 
@@ -67,24 +67,28 @@ function handleClick (id, outfits) {
         :class="{ 'md:flex-row-reverse': index % 2 !== 0 }">
 
         <!-- 立绘区域 -->
-        <div class="md:w-1/2 w-full relative" v-fade-in>
-          <div
-            class="relative overflow-hidden p-1 transition-transform duration-500 hover:-translate-y-2 cursor-pointer"
+        <div class="md:w-1/2 w-full relative" v-fade-in="{ direction: index % 2 === 0 ? 'left' : 'right', delay: 100 }">
+          <div v-tilt="5"
+            class="relative overflow-hidden p-1 transition-transform duration-500 cursor-pointer"
             @click="handleClick(c.id, c.outfits)">
             <div class="relative aspect-[3/4] w-full">
-              <Transition name="fade" mode="out-in">
+              <Transition name="character-swap" mode="out-in">
                 <img :key="currentVariants[c.id]" :src="c.outfits[currentVariants[c.id]]" :alt="c.name"
-                  class="w-full h-full object-contain object-bottom filter drop-shadow-2xl transition-all duration-500" />
+                  class="w-full h-full object-contain object-bottom filter drop-shadow-2xl" />
               </Transition>
+            </div>
+            <!-- 点击提示 -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest opacity-0 group-hover/char:opacity-100 transition-opacity">
+              CLICK TO CHANGE
             </div>
           </div>
         </div>
 
         <!-- 文字区域 -->
-        <div class="md:w-1/2 space-y-8" v-fade-in>
+        <div class="md:w-1/2 space-y-8" v-fade-in="{ direction: index % 2 === 0 ? 'right' : 'left', delay: 200 }">
           <div class="space-y-4">
             <h3
-              class="text-3xl md:text-5xl font-bold tracking-widest text-white font-serif border-l-8 border-[#b2252e] pl-4 md:pl-6 py-2">
+              class="text-3xl md:text-5xl font-bold tracking-widest text-white font-serif border-l-8 border-[#b2252e] pl-4 md:pl-6 py-2 transition-all duration-300 group-hover/char:pl-8 group-hover/char:border-l-12">
               {{ c.name }}
             </h3>
             <div class="text-sm font-display tracking-[0.5em] text-white/40 uppercase pl-4 md:pl-8">{{ c.id }}</div>
@@ -97,9 +101,9 @@ function handleClick (id, outfits) {
           <!-- 差分切换指示器 -->
           <div class="pl-4 md:pl-8 flex gap-4 pt-4 flex-wrap">
             <div class="text-xs text-white/30 uppercase tracking-widest mb-2 self-center mr-2 w-full md:w-auto">Variation</div>
-            <button v-for="(outfit, idx) in c.outfits" :key="idx"
-              class="w-12 h-12 md:w-10 md:h-10 flex items-center justify-center text-sm font-display font-bold transition-all border border-white/30 hover:border-white hover:bg-white/10"
-              :class="currentVariants[c.id] === idx ? 'bg-white text-black hover:bg-white' : 'text-white/50'"
+            <button v-for="(outfit, idx) in c.outfits" :key="idx" v-magnetic="0.2"
+              class="w-12 h-12 md:w-10 md:h-10 flex items-center justify-center text-sm font-display font-bold transition-all border border-white/30 hover:border-white hover:bg-white/10 hover-bounce"
+              :class="currentVariants[c.id] === idx ? 'bg-white text-black hover:bg-white animate-glow-pulse' : 'text-white/50'"
               @click="setVariant(c.id, idx)">
               {{ idx + 1 }}
             </button>
@@ -111,13 +115,23 @@ function handleClick (id, outfits) {
 </template>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
+.character-swap-enter-active {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.character-swap-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.character-swap-enter-from {
   opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  filter: blur(4px);
+}
+
+.character-swap-leave-to {
+  opacity: 0;
+  transform: scale(1.02);
+  filter: blur(4px);
 }
 </style>
