@@ -2,9 +2,9 @@
 const downloads = [
   {
     title: '汉化补丁',
-    desc: '还没出，等我出了再更新，总之下面的按钮点了也没用',
+    desc: 'V1.0正式版，可能有bug，如果发现了，请通过页面最底部联系方式联系我们',
     links: [
-      { name: '百度网盘', url: '' },
+      { name: '百度网盘', url: 'https://pan.baidu.com/s/10M4zszpmAUWwasOsxLpGag?pwd=1d7e' },
       { name: 'Github Release', url: '' }
     ]
   }

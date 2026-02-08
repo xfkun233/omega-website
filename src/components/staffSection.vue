@@ -4,12 +4,12 @@ import { ref } from 'vue'
 const activeTab = ref('list') // 'list' or 'comments'
 
 const staffList = [
-  { role: '程序', name: '占位' },
-  { role: '翻译', name: '占位' },
-  { role: '改图', name: '占位' },
-  { role: '校对', name: '占位' },
-  { role: '测试', name: '占位' },
-  { role: '监制', name: '占位' },
+  { role: '程序', name: '晓风君' },
+  { role: '翻译', name: 'Labombina' },
+  { role: '美工', name: 'ANX' },
+  { role: '校对', name: 'Labombina，晓风君，米拉比利斯，\nNoëlle Kagamigawa' },
+  { role: '测试', name: 'lastarc，源千雪，叮咚鸡，LightYuki，竹井塔人，龙宫蕾娜，神明吞噬者玖玖里' },
+  { role: '监制', name: '晓风君' },
 ]
 
 const staffComments = [
@@ -36,7 +36,7 @@ const staffComments = [
     </h2>
 
     <!-- Navigation Tabs -->
-    <div class="relative z-10 flex justify-center mb-10 gap-8">
+    <!-- <div class="relative z-10 flex justify-center mb-10 gap-8">
       <button @click="activeTab = 'list'"
         class="pb-2 text-lg font-display tracking-widest transition-all duration-300 relative group"
         :class="activeTab === 'list' ? 'text-white' : 'text-white/40 hover:text-white/70'">
@@ -51,7 +51,7 @@ const staffComments = [
         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#b2252e] transition-transform duration-300 origin-center"
           :class="activeTab === 'comments' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-50'"></span>
       </button>
-    </div>
+    </div> -->
 
     <div class="relative z-10 max-w-5xl mx-auto">
 
@@ -67,7 +67,7 @@ const staffComments = [
             
             <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 max-w-4xl px-4">
               <span v-for="(name, nIndex) in item.name.split(/[、,]/)" :key="nIndex"
-                class="text-2xl md:text-2xl lg:text-4xl font-serif text-white/80 tracking-wide hover:text-white hover:scale-105 transform transition-all duration-300 cursor-default">
+                class="whitespace-pre-line inline-block text-center text-2xl md:text-2xl lg:text-4xl font-serif text-white/80 tracking-wide hover:text-white hover:scale-105 transform transition-all duration-300 cursor-default">
                 {{ name.trim() }}
               </span>
             </div>
