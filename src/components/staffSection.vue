@@ -7,7 +7,7 @@ const staffList = [
   { role: '程序', name: '晓风君' },
   { role: '翻译', name: 'Labombina' },
   { role: '美工', name: 'ANX' },
-  { role: '校对', name: 'Labombina，晓风君，米拉比利斯，\nNoëlle Kagamigawa' },
+  { role: '校对', name: 'Labombina，晓风君，米拉比利斯，驎之，\nNoëlle Kagamigawa' },
   { role: '测试', name: 'lastarc，源千雪，叮咚鸡，LightYuki，竹井塔人，龙宫蕾娜，神明吞噬者玖玖里' },
   { role: '监制', name: '晓风君' },
 ]
