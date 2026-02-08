@@ -4,8 +4,8 @@ const downloads = [
     title: '汉化补丁',
     desc: 'V1.0正式版，可能有bug，如果发现了，请通过页面最底部联系方式联系我们',
     links: [
-      { name: '百度网盘', url: 'https://pan.baidu.com/s/10M4zszpmAUWwasOsxLpGag?pwd=1d7e' },
-      { name: 'Github Release', url: 'https://github.com/xfkun233/Omega-no-shikai_CN/releases/tag/v1.0.0' }
+      { name: '百度网盘', url: 'https://pan.baidu.com/s/1RZq-OEyZMzoo0zDkJXMKdw?pwd=kddy' },
+      { name: 'Github Release', url: 'https://github.com/xfkun233/Omega-no-shikai_CN/releases/' }
     ]
   }
 ]
